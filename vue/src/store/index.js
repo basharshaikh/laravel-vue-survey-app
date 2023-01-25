@@ -25,7 +25,18 @@ const store = createStore({
         },
         dashboard: {
             loading: false,
-            data: {}
+            data: {
+                latestSurvey: {
+                    image_url: '',
+                    title:'',
+                    created_at: '',
+                    expire_date: '',
+                    status: '',
+                    questions: [],
+                    answers: [],
+                    
+                }
+            }
         }
     },
     getters: {},
@@ -123,7 +134,7 @@ const store = createStore({
             //         Accept: "application/json",
             //     },
             //     method: "POST",
-            //     body: JSON.stringify(user)
+            //     body: JSON.stringify(user) // it will go though browser req body/payload as json
             // })
             // .then((res) => res.json())
             // .then((res) => {
@@ -159,6 +170,12 @@ const store = createStore({
         },
     },
     mutations: {
+        setUser: (state, userData) => {
+            state.user.token = userData.token;
+            state.user.data = userData.user;
+            sessionStorage.setItem('TOKEN', userData.token);
+        },
+
         dashboardLoading(state, loading){
             state.dashboard.loading = loading;
         },
@@ -189,11 +206,6 @@ const store = createStore({
             sessionStorage.removeItem('TOKEN');
         },
 
-        setUser: (state, userData) => {
-            state.user.token = userData.token;
-            state.user.data = userData.user;
-            sessionStorage.setItem('TOKEN', userData.token);
-        },
 
         notify: (state, {message, type}) => {
             state.notification.show = true;

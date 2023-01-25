@@ -1,6 +1,6 @@
 <template>
   <PageComponent title="Dashboard">
-    <diV v-if="loading" class="flex justify-center">Loading...</diV>
+    <diV v-if="loading" class="flex justify-center relative">Loading...</diV>
     <div v-else
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-gray-700"
     >

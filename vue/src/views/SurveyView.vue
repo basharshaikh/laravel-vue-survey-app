@@ -280,7 +280,7 @@ function questionChange(question){
     // }
 }
 
-console.log(router.params);
+// console.log(router.params);
 // Saving or updating the servey
 function saveSurvey(){
     store.dispatch('saveSurvey', {...model.value})
@@ -290,7 +290,7 @@ function saveSurvey(){
             message: 'Survey updation succeed!'
         });
         
-        router.replace({name: 'SurveyView', params: {id: 51}});
+        router.replace({name: 'SurveyView', params: {id: data.data.id}});
         // router.push({
         //     name: 'SurveyView',
         //     params: {id: model.value.id}
