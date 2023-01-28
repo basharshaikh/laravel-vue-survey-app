@@ -18,11 +18,13 @@
 
       <!-- Latest surveys -->
       <div class="bg-white shadow-md p-4 row-span-2 order-3 lg:order-1">
-        <h3 class="text-3xl font-semibold">latest Surveys</h3>
-        <img :src="data.latestSurvey.image_url" alt="" class="w-[240px] mx-auto">
-        <h3 class="font-bold text-xl mb-3">{{data.latestSurvey.title}}</h3>
-
-        <div class="flex justify-between text-sm mb-1">
+        <h3 class="text-2xl font-bold mb-4 ">latest Surveys</h3>
+        <div class="bg-gray-200 p-4 rounded-md">
+          <img class="w-60 rounded-md m-auto" :src="data.latestSurvey.image_url">
+        </div>
+        <h3 class="font-bold text-xl my-3">{{data.latestSurvey.title}}</h3>
+        <hr>
+        <div class="flex justify-between text-sm mt-3">
           <div>Create Date:</div>
           <div>{{data.latestSurvey.created_at}}</div>
         </div>
@@ -46,10 +48,10 @@
           <div>{{data.latestSurvey.answers}}</div>
         </div>
 
-        <div class="flex justify-between">
+        <div class="flex justify-between mt-3">
           <router-link 
             :to="{name: 'SurveyView', params: {id: data.latestSurvey.id}}"
-            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-700 hover:text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            class="lvs-primary-btn"
           >
             Edit Survey
           </router-link>
@@ -62,18 +64,21 @@
             View Answers</button>
         </div>
       </div>
+
+      <!-- Latest ans -->
       <div class="bg-white shadow-md p-3 row-span-2 order-4 lg:order-2">
           <div class="flex justify-between items-center mb-3 px-2">
-            <h3 class="text-2xl font-semibold">Latest Answers</h3>
+            <h3 class="text-2xl font-bold">Latest Answers</h3>
             <a href="javascript:void(0)" class="text-sm text-blue-500 hover:decoration-blue-500">View all</a>
           </div>
+          <hr>
+          <div class="px-2">
+              <a href="#" v-for="answer of data.latestAnswers" :key="answer.id">
+                <div class="font-semibold">{{answer.survey.title}}</div>
+                <small class="font-semibold">{{answer.end_date}}<i></i></small>
+              </a>
+          </div>
 
-          <a href="#" v-for="answer of data.latestAnswers"
-            :key="answer.id"
-          >
-            <div class="font-semibold">{{answer.survey.title}}</div>
-            <small class="font-semibold">{{answer.end_date}}<i></i></small>
-          </a>
       </div>
     </div>
   </PageComponent>  

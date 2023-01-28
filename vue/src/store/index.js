@@ -27,7 +27,7 @@ const store = createStore({
             loading: false,
             data: {
                 latestSurvey: {
-                    image_url: '',
+                    image_url: null,
                     title:'',
                     created_at: '',
                     expire_date: '',
@@ -41,6 +41,16 @@ const store = createStore({
     },
     getters: {},
     actions: {
+        geAllSurveyWithAns(){
+            return axiosClient
+            .get(`/survey-with-ans`)
+            .then((res)=>{return res})
+        },
+        geSingleSurveyWithAns({}, id){
+            return axiosClient
+            .get(`/survey-answers/${id}`)
+            .then((res)=>{return res})
+        },
         getDashboardData({commit}){
             commit('dashboardLoading', true);
             return axiosClient.get('/dashboard')
@@ -110,12 +120,12 @@ const store = createStore({
               response = axiosClient
                 .put(`/survey/${survey.id}`, survey)
                 .then((res) => {
-                  commit('setCurrentSurvey', res.data)
+                //   commit('setCurrentSurvey', res.data)
                   return res;
                 });
             } else {
               response = axiosClient.post("/survey", survey).then((res) => {
-                commit('setCurrentSurvey', res.data)
+                // commit('setCurrentSurvey', res.data)
                 return res;
               });
             }

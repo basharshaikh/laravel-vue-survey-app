@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Survey;
-use App\Http\Requests\StoreSurveyRequest;
-use App\Http\Requests\UpdateSurveyRequest;
-use App\Http\Requests\StoreSurveyAnswerRequest;
-use Illuminate\Http\Request;
-use App\Http\Resources\SurveyResource;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use App\Models\SurveyAnswer;
+use Illuminate\Http\Request;
 use App\Models\SurveyQuestion;
+use Illuminate\Validation\Rule;
 use App\Models\SurveyQestionAnswer;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
+use App\Http\Resources\SurveyResource;
+use App\Http\Requests\StoreSurveyRequest;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Arr;
+use App\Http\Requests\UpdateSurveyRequest;
+use App\Http\Resources\SurveyAnswerResource;
+use App\Http\Resources\SurveyWithAnsrResource;
+use App\Http\Requests\StoreSurveyAnswerRequest;
 
 
 
@@ -169,7 +171,7 @@ class SurveyController extends Controller
 
 
 
-        // return new SurveyResource($survey);
+        return new SurveyResource($survey);
     }
 
     /**
@@ -303,6 +305,7 @@ class SurveyController extends Controller
             $data = [
                 'survey_question_id' => $questionID,
                 'survey_answer_id' => $surveyAnswer->id,
+                'survey_id' => $survey->id,
                 'answer' => is_array($answer) ? json_encode($answer) : $answer
             ];
 
@@ -310,5 +313,20 @@ class SurveyController extends Controller
         }
 
         return response("", 201);
+    }
+
+
+    // Get surveys with ans
+    public function GetSurveys(Survey $survey){
+        $data = $survey->with('questions', 'answers')->paginate(3);
+
+        return $data;
+    }
+
+    // Get surveys with ans
+    public function GetSurveysWithAns(Survey $survey){
+        $id = $survey->id;
+        $data = new SurveyWithAnsrResource(Survey::find($id));
+        return $data;
     }
 }

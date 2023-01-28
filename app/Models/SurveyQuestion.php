@@ -17,8 +17,7 @@ class SurveyQuestion extends Model
         'type',
         'survey_id'
     ];
-
-
+    
     public function survey(){
         return $this->belongsTo(Survey::class);
     }

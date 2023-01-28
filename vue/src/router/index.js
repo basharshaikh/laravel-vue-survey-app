@@ -19,6 +19,8 @@ import SurveyPublicView from '../views/SurveyPublicView.vue'
 import DefaultLayout from '../components/DefaultLayout.vue'
 import AuthLayout from '../components/AuthLayout.vue'
 import SurveyView from '../views/SurveyView.vue'
+import SurveyAns from '../views/SurveyAns.vue'
+import AnsVurveys from '../views/AnsVurveys.vue'
 
 // check store data for user token
 import store from '../store'
@@ -48,7 +50,17 @@ const routes = [
                 path: '/surveys/:id',
                 name: 'SurveyView',
                 component: SurveyView
-            }
+            },
+            {
+                path: '/answers',
+                name: 'SurveyAns',
+                component: SurveyAns
+            },
+            {
+                path: '/survey-answers/:id',
+                name: 'AnsVurveys',
+                component: AnsVurveys
+            },
         ]
     },
     {
