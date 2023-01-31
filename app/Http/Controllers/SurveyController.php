@@ -305,7 +305,7 @@ class SurveyController extends Controller
             $data = [
                 'survey_question_id' => $questionID,
                 'survey_answer_id' => $surveyAnswer->id,
-                'survey_id' => $survey->id,
+                // 'survey_id' => $survey->id,
                 'answer' => is_array($answer) ? json_encode($answer) : $answer
             ];
 

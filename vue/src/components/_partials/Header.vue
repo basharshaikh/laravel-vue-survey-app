@@ -9,14 +9,18 @@
         <div class="flex place-items-center">
             <SearchIcon class="lvs-rounded-icon"/>
             <BellIcon class="lvs-rounded-icon"/>
-            <UserIcon class="lvs-rounded-icon !mr-0"/>
+            <LogoutIcon @click="logout" class="lvs-rounded-icon !mr-0"/>
         </div>
     </header>
 </template>
 
 <script setup>
-import { UserIcon, BellIcon, SearchIcon} from '@heroicons/vue/solid';
+import { BellIcon, SearchIcon, LogoutIcon} from '@heroicons/vue/solid';
 import BarThree from '../_icons/BarThree.vue'
+import store from '../../store'
+import { useRouter } from 'vue-router';
+const router = useRouter()
+
 function logout(){
     store.dispatch('logout') 
     .then(() => {

@@ -21,6 +21,7 @@ import AuthLayout from '../components/AuthLayout.vue'
 import SurveyView from '../views/SurveyView.vue'
 import SurveyAns from '../views/SurveyAns.vue'
 import AnsVurveys from '../views/AnsVurveys.vue'
+import CalcPrice from '../views/CalcPrice.vue'
 
 // check store data for user token
 import store from '../store'
@@ -84,6 +85,11 @@ const routes = [
                 path: '/register',
                 name: 'Register',
                 component: Register
+            },
+            {
+                path: '/calculate-price',
+                name: 'CalcPrice',
+                component: CalcPrice
             }
         ]
     }
