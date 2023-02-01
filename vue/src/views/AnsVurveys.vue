@@ -21,16 +21,21 @@
 
             <div class="col-span-7 shadow-md p-6">
                 <div class="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:grid-cols-1 md:grid-cols-1">
-                    <div v-for="(ans, i) in survey.answers" class="border mb-4 p-4 col-span-5">
-                        <h3 class="font-semibold text-xl mb-3">{{ i+1 }}. Survey answer</h3>
-
-                        <div v-for="(qa, index) in ans.answers" class="my-3">      
-                            <hr class="mb-3">
-                            <div v-for="q in survey.questions" class="">
-                                <div class="font-semibold" v-if="q.id == qa.survey_question_id">Q: {{ q.question }}</div>
-                            </div>
-                            <p>Ans: {{ qa.answer }}</p>
+                    <div v-for="(ans, i) in survey.answers" class="border mb-4 p-4 col-span-5 overflow-hidden">
+                        <div class="flex justify-between">
+                            <h3 class="font-semibold text-xl mb-3">{{ i+1 }}. Survey answer</h3>
                         </div>
+
+                        <div class="h-[300px] overflow-y-auto scrollbar scrollbar-track-slate-200 scrollbar-thumb-slate-300">
+                            <div v-for="(qa, index) in ans.answers" class="my-3">      
+                                <hr class="mb-3">
+                                <div v-for="q in survey.questions" class="">
+                                    <div class="font-semibold" v-if="q.id == qa.survey_question_id">Q: {{ q.question }}</div>
+                                </div>
+                                <p>Ans: {{ qa.answer }}</p>
+                            </div>
+                        </div>
+                
                     </div>
                 </div>
             </div>
@@ -44,7 +49,12 @@ import PageComponent from '../components/PageComponent.vue';
 import store from '../store';
 import {ref} from 'vue'
 import { useRoute } from "vue-router";
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/solid';
+
+
+
 const route = useRoute();
+
 
 
 const survey = ref({})

@@ -11,6 +11,7 @@
     "@headlessui/vue": "^0.0.0-next.0ce63d8",
     "@heroicons/vue": "^1.0.6",
     "axios": "^0.27.2",
+    "tailwind-scrollbar": "^2.1.0",
     "uuid": "^8.3.2",
     "vue": "^3.2.25",
     "vue-router": "^4.1.3",

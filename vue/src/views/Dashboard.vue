@@ -1,9 +1,8 @@
 <template>
-  <PageComponent title="Dashboard">
-    <diV v-if="loading" class="flex justify-center relative">Loading...</diV>
-    <div v-else
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-gray-700"
-    >
+  <PageComponent title="Dashboard" class="min-h-screen">
+    <div v-if="loading" class="flex justify-center relative">Loading...</div>
+    <div v-else class="min-h-screen">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-gray-700">
       <!-- Total surveys -->
       <div class="bg-white shadow-md p-3 text-center flex flex-col order-1 lg:order-2">
         <h3 class="text-3xl font-semibold">Total Surveys</h3>
@@ -84,6 +83,7 @@
           </div>
 
       </div>
+    </div>
     </div>
   </PageComponent>  
 </template>

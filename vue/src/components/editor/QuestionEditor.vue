@@ -47,7 +47,7 @@
 <div class="grid gap-3 grid-cols-12">
 
     <!-- question text -->
-    <div class="mt-3 col-span-9">
+    <div class="mt-3 col-span-7 lg:col-span-9 sm:col-span-7">
       <label
         :for="'question_text_' + model.data"
         class="block text-sm font-medium text-gray-700"
@@ -73,7 +73,7 @@
     </div>
 
     <!-- question type -->
-    <div class="mt-3 col-span-3">
+    <div class="mt-3 col-span-5 lg:col-span-3 sm:col-span-5">
       <label for="question_type" class="block text-sm font-medium text-gray-700"
         >Select Question Type</label
       >
@@ -96,7 +96,7 @@
           sm:text-sm
         "
       >
-        <option v-for="type in questionTypes" :key="type" :value="type">
+        <option v-for="(type, index) in questionTypes" :key="index" :value="type">
             {{uppderCaseFirst(type)}}
 
         </option>
@@ -231,17 +231,12 @@
 </div>
   <!--/ Data -->
 
-<!-- 
-  <pre>
-    {{model}}
-  </pre> -->
-
 
 <hr class="my-4" />
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import store from '../../store'
 import {v4 as uuidv4} from 'uuid'
 
@@ -267,16 +262,16 @@ function shouldHaveOptions(){
 }
 
 function getOptions(){
-    return model.value.data.options
-    // Returning each question's different answer value like where are you from? ans: USA, Germany etc
+    // if(model.value.data.options){
+        return model.value.data.options
+    // } else {
+    //     return []
+    // }
 }
 
 
-// console.log(model.value.data)
-
-
 function setOptions(options){
-    model.value.data.options = options; //-< options is array of object. setOptions will use bellow
+    model.value.data.options = options; 
 }
 
 // Add option function
@@ -287,6 +282,8 @@ function addOption(){
     ]);
     dataChange()
 }
+
+
 function removeOption(op){
     setOptions(
         getOptions().filter(

@@ -21,8 +21,8 @@
         
         <!-- form -->
         <form v-else>
-            <div class="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:grid-cols-1 md:grid-cols-1">
-                <div class="col-span-7 shadow sm:rounded-md sm:overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-10 gap-0 lg:gap-4">
+                <div class="col-span-7 shadow sm:rounded-md mb-6">
                 <!-- fields -->
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <!-- title -->
@@ -97,7 +97,7 @@
                 </div>
 
                 <!-- Form right side -->
-                <div class="col-span-3 shadow sm:rounded-md sm:overflow-hidden">
+                <div class="col-span-3 shadow sm:rounded-md w-full mb-6">
                     <div class="publish-box mb-4">
                         <h4 class="text-lg font-bold border-b-[1px] py-2 px-3">Publish</h4>
                         <div class="p-3 pb-0">

@@ -23,6 +23,9 @@ const store = createStore({
             type: null,
             message: null
         },
+        sidebar: {
+            show: true
+        },
         dashboard: {
             loading: false,
             data: {
@@ -185,7 +188,9 @@ const store = createStore({
             state.user.data = userData.user;
             sessionStorage.setItem('TOKEN', userData.token);
         },
-
+        sidebarToggle: (state, data) => {
+            state.sidebar = data
+        },
         dashboardLoading(state, loading){
             state.dashboard.loading = loading;
         },
