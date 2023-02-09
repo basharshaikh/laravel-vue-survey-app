@@ -6,10 +6,10 @@
                 Survey Answers
             </h3>
         </div>
-        
         </template>
 
-        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+        <div v-if="loading" class="flex justify-center min-h-screen">Loading...</div>
+        <div v-else class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 min-h-screen">
             <div v-for="(survey, i) in surveys" class="bg-white shadow-md p-4 ">
                 <div class="">
                     <img class="" :src="baseUrl+'/'+survey.image">
@@ -65,8 +65,10 @@ import { EyeIcon, PencilAltIcon } from '@heroicons/vue/solid';
 
 const surveys = ref({})
 const baseUrl = import.meta.env.VITE_API_BASE_URL
+const loading = ref(true)
 store.dispatch("geAllSurveyWithAns")
 .then((res) => {
+    loading.value = false
     surveys.value = res.data.data
 })
 </script>

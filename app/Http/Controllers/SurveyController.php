@@ -136,7 +136,7 @@ class SurveyController extends Controller
 
 
         // Get ids as plain array of Existing questions
-                                //questions() method is coming from model Survey
+        //questions() method is coming from model Survey
         $existingIds = $survey->questions()->pluck('id')->toArray();        
         // return $existingIds; //[5,6,7]
 
@@ -151,7 +151,8 @@ class SurveyController extends Controller
         $toAdd = array_diff($newIds, $existingIds);
 
         // Delete questions by $toDelete array
-        SurveyQuestion::destroy($toDelete); // https://laravel.com/docs/9.x/eloquent#deleting-an-existing-model-by-its-primary-key
+        SurveyQuestion::destroy($toDelete); 
+        // https://laravel.com/docs/9.x/eloquent#deleting-an-existing-model-by-its-primary-key
 
         //Create new created questions 
         foreach ($data['questions'] as $question) {

@@ -4,7 +4,7 @@
   <main class="p-6">
     <slot></slot>
   </main>
-  <Footer />
+  <Footer/>
 </template>
 
 <script setup>

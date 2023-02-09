@@ -9,18 +9,17 @@
         </div>
         </template>
 
-        <div v-if="surveyLoading" class="flex justify-center">Loading...</div>
-
-        <Alert v-if="Object.keys(errors).length" class="flex-col items-stretch text-sm">
-            <div v-for="(field, i) of Object.keys(errors)" :key="i">
-                <div v-for="(error, ind) of errors[field] || []" :key="ind">
-                    *{{error}}
-                </div>
-            </div>
-        </Alert>
+        <div v-if="surveyLoading" class="flex justify-center min-h-screen">Loading...</div>
         
         <!-- form -->
         <form v-else>
+            <Alert v-if="Object.keys(errors).length" class="flex-col items-stretch text-sm">
+                <div v-for="(field, i) of Object.keys(errors)" :key="i">
+                    <div v-for="(error, ind) of errors[field] || []" :key="ind">
+                        *{{error}}
+                    </div>
+                </div>
+            </Alert>
             <div class="grid grid-cols-1 lg:grid-cols-10 gap-0 lg:gap-4">
                 <div class="col-span-7 shadow sm:rounded-md mb-6">
                 <!-- fields -->

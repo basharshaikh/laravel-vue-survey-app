@@ -9,7 +9,10 @@
         
         </template>
 
-        <div class="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:grid-cols-1 md:grid-cols-1">
+        <div v-if="loading" class="flex justify-center min-h-screen">
+            Loading...
+        </div>
+        <div v-else class="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:grid-cols-1 md:grid-cols-1 min-h-screen">
             <div class="col-span-3 shadow-lg rounded-md">
                 <img class="mt-6 mb-2 rounded-md" v-if="survey.image_url" :src="survey.image_url" :alt="survey.title">
                 <div class="p-4 text-center">
@@ -49,18 +52,14 @@ import PageComponent from '../components/PageComponent.vue';
 import store from '../store';
 import {ref} from 'vue'
 import { useRoute } from "vue-router";
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/solid';
-
-
 
 const route = useRoute();
-
-
-
+const loading = ref(true)
 const survey = ref({})
 store.dispatch("geSingleSurveyWithAns", route.params.id)
 .then((res) => {
     survey.value = res.data.data
+    loading.value = false
 })
 
 </script>

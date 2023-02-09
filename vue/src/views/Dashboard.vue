@@ -1,6 +1,6 @@
 <template>
-  <PageComponent title="Dashboard" class="min-h-screen">
-    <div v-if="loading" class="flex justify-center relative">Loading...</div>
+  <PageComponent title="Dashboard">
+    <div v-if="loading" class="flex justify-center relative min-h-screen">Loading...</div>
     <div v-else class="min-h-screen">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-gray-700">
       <!-- Total surveys -->
