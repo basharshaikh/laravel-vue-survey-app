@@ -1,5 +1,6 @@
 <template>
   <PageComponent title="Dashboard">
+    
     <div v-if="loading" class="flex justify-center relative min-h-screen">Loading...</div>
     <div v-else class="min-h-screen">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-gray-700">
@@ -16,7 +17,7 @@
       </div>
 
       <!-- Latest surveys -->
-      <div class="bg-white shadow-md p-4 row-span-2 order-3 lg:order-1">
+      <div v-if="data.latestSurvey" class="bg-white shadow-md p-4 row-span-2 order-3 lg:order-1">
         <h3 class="text-2xl font-bold mb-4 ">latest Survey</h3>
         <div class="bg-gray-200 p-4 rounded-md">
           <img class="w-60 rounded-md m-auto" :src="data.latestSurvey.image_url">
@@ -90,15 +91,20 @@
 
 <script setup>
   import PageComponent from '../components/PageComponent.vue';
-  import { EyeIcon, FolderOpenIcon, PencilAltIcon } from '@heroicons/vue/solid';
+  import { EyeIcon, PencilAltIcon } from '@heroicons/vue/solid';
+  import store from '../store';
+  import { ref } from 'vue';
 
-  import { computed, ref } from 'vue';
-  import { useStore } from 'vuex';
 
-  const store = useStore();
+  const loading = ref(true)
+  const data = ref({})
 
-  const loading = computed(() => store.state.dashboard.loading);
-  const data = computed(() => store.state.dashboard.data);
-
-  store.dispatch('getDashboardData'); // it will request for data and get data. after getting data, will update state 'dashoboard' and then it will computed (auto load) here {{data}}
+  store.dispatch('getDashboardData')
+  .then((res) => {
+    data.value = res.data
+    loading.value = false
+  })
+  .catch(err => {
+    loading.value = false
+  })
 </script>

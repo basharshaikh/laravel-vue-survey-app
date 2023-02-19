@@ -37,7 +37,6 @@ const store = createStore({
                     status: '',
                     questions: [],
                     answers: [],
-                    
                 }
             }
         }

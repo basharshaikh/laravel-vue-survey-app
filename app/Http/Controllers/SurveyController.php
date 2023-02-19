@@ -30,12 +30,8 @@ class SurveyController extends Controller
      */
     public function index(Request $request)
     {
-        //
         $user = $request->user();
-        return SurveyResource::collection(Survey::latest()->where('user_id', $user->id)->paginate(6));
-        // var_dump($request);
-
-        
+        return SurveyResource::collection(Survey::latest()->where('user_id', $user->id)->paginate(6));        
     }
 
     /**
@@ -65,20 +61,7 @@ class SurveyController extends Controller
             $question['survey_id'] = $survey->id;
             $this->createQuestion($question);
         }
-
-
-
-
         return new SurveyResource($survey);
-        // return $survey;
-        // return "WOOOO"; https://prnt.sc/RTGP-B_Rj_qn
-        // return $request."af";
-        // $user = $request->user();
-        // return $request; // returning {"title":"aSfdsa","status":false,"description":null,"image":null,"expire_date":null,"questions":[],"user_id":2}
-        // return  $data; //Returning {"title":"sdfsdf","image":null,"user_id":2,"status":false,"description":null,"expire_date":null}
-        // return $request->path();
-
-        // return "kjsdfh";
     }
 
     /**
@@ -99,9 +82,7 @@ class SurveyController extends Controller
     }
 
     /**
-     * 
-     * 
-     * 
+     * Serve survey for guest
      */
     public function surveyForGuest(Survey $survey) 
     {
@@ -318,8 +299,9 @@ class SurveyController extends Controller
 
 
     // Get surveys with ans
-    public function GetSurveys(Survey $survey){
-        $data = $survey->with('questions', 'answers')->paginate(3);
+    public function GetSurveys(Survey $survey, Request $request){
+        $user = $request->user();
+        $data = $survey->where('user_id', $user->id)->with('questions', 'answers')->paginate(3);
 
         return $data;
     }

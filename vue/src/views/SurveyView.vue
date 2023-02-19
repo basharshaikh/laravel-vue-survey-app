@@ -12,7 +12,7 @@
         <div v-if="surveyLoading" class="flex justify-center min-h-screen">Loading...</div>
         
         <!-- form -->
-        <form v-else>
+        <form v-else class="min-h-screen">
             <Alert v-if="Object.keys(errors).length" class="flex-col items-stretch text-sm">
                 <div v-for="(field, i) of Object.keys(errors)" :key="i">
                     <div v-for="(error, ind) of errors[field] || []" :key="ind">
@@ -26,7 +26,7 @@
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <!-- title -->
                     <div>
-                        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                        <label for="title" class="block text-sm font-medium text-gray-700">Survey Title</label>
                         <input
                         type="text"
                         name="title"
