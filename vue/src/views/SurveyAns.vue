@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="min-h-screen">
+            <div v-else class="min-h-screen">
                 <p class="text-2xl text-center">You not added a survey yet...</p>
             </div>
         </div>
