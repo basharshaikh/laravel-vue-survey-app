@@ -210,6 +210,7 @@ function saveSurvey(ev){
         if(!route.params.id){
             model.value = {}
         }
+        errors.value = '';
     })
     .catch((err) => {
       if(err.response.status === 422){

@@ -115,7 +115,7 @@ const store = createStore({
             |console.log(survey); this 'survey is an object with form data
             */
 
-            delete survey.image_url;
+            // delete survey.image_url;
 
             let response;
             if (survey.id) {
